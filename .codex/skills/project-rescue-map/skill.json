@@ -1,0 +1,22 @@
+{
+  "name": "project-rescue-map",
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "title": "已开工项目补救诊断 Skill",
+  "source_skill": "new",
+  "workflow_stage": "rescue",
+  "upstream": [],
+  "downstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "skeleton-check",
+    "web-frame",
+    "server-frame",
+    "work-plan",
+    "doc-rules",
+    "final-check"
+  ],
+  "entrypoint": "SKILL.md"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目补救诊断"
+  short_description: "诊断已开工项目的阶段缺口风险等级并给出补救路线建议"
+  default_prompt: "Use $project-rescue-map to diagnose an existing project and produce a stage-level rescue roadmap."
