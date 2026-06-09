@@ -1,0 +1,21 @@
+{
+  "name": "work-plan",
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "title": "MVP 功能切片与交付计划 Skill",
+  "source_skill": "new",
+  "workflow_stage": "07",
+  "upstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "web-frame",
+    "server-frame"
+  ],
+  "downstream": [
+    "doc-rules",
+    "final-check"
+  ],
+  "entrypoint": "SKILL.md"
+}

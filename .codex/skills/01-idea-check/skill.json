@@ -1,0 +1,16 @@
+{
+  "name": "idea-check",
+  "version": "4.0.0",
+  "language": "zh-CN",
+  "title": "产品立项与 MVP 边界定义 Skill",
+  "source_skill": "product-kickoff-copilot-pro-v3",
+  "workflow_stage": "01",
+  "upstream": [],
+  "downstream": [
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "work-plan"
+  ],
+  "entrypoint": "SKILL.md"
+}

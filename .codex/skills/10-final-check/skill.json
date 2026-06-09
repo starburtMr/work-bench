@@ -1,0 +1,20 @@
+{
+  "name": "final-check",
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "title": "全链路质量门禁与发布准备 Skill",
+  "source_skill": "new",
+  "workflow_stage": "09",
+  "upstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "web-frame",
+    "server-frame",
+    "work-plan",
+    "doc-rules"
+  ],
+  "downstream": [],
+  "entrypoint": "SKILL.md"
+}

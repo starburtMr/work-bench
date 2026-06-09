@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Idea Check"
+  short_description: "Turn a vague idea into a clear MVP scope"
+  default_prompt: "Use $idea-check to turn this idea into a product brief, MVP scope, and delivery target paths."

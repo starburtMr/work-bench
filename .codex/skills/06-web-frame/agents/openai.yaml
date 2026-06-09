@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Web Frame"
+  short_description: "Build a clean, maintainable frontend skeleton"
+  default_prompt: "Use $web-frame to create or normalize the frontend skeleton."

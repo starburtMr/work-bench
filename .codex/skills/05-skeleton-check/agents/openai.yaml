@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skeleton Check"
+  short_description: "Check skeleton candidates and choose reuse or create"
+  default_prompt: "Use $skeleton-check to inspect frontend/apps and backend/apps for reusable skeleton candidates."

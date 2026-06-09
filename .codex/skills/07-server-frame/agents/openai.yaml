@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Server Frame"
+  short_description: "Build a solid, maintainable backend skeleton"
+  default_prompt: "Use $server-frame to build or repair the backend skeleton."

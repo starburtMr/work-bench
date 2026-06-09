@@ -1,0 +1,19 @@
+{
+  "name": "tool-pick",
+  "version": "4.0.0",
+  "language": "zh-CN",
+  "title": "项目技术栈决策 Skill",
+  "source_skill": "tech_stack_selection_skill",
+  "workflow_stage": "02",
+  "upstream": [
+    "idea-check"
+  ],
+  "downstream": [
+    "data-map",
+    "talk-link",
+    "web-frame",
+    "server-frame",
+    "doc-rules"
+  ],
+  "entrypoint": "SKILL.md"
+}

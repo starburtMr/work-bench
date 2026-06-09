@@ -1,0 +1,19 @@
+{
+  "name": "talk-link",
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "title": "API 契约与前后端联调设计 Skill",
+  "source_skill": "new",
+  "workflow_stage": "04",
+  "upstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map"
+  ],
+  "downstream": [
+    "web-frame",
+    "server-frame",
+    "work-plan"
+  ],
+  "entrypoint": "SKILL.md"
+}

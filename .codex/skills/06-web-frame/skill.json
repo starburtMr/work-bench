@@ -1,0 +1,19 @@
+{
+  "name": "web-frame",
+  "version": "4.0.0",
+  "language": "zh-CN",
+  "title": "前端工程骨架与组件治理 Skill",
+  "source_skill": "frontend_skeleton_vibe_skill_v2",
+  "workflow_stage": "05",
+  "upstream": [
+    "idea-check",
+    "tool-pick",
+    "talk-link"
+  ],
+  "downstream": [
+    "work-plan",
+    "doc-rules",
+    "final-check"
+  ],
+  "entrypoint": "SKILL.md"
+}

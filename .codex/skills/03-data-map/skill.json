@@ -1,0 +1,18 @@
+{
+  "name": "data-map",
+  "version": "4.0.0",
+  "language": "zh-CN",
+  "title": "业务流程驱动数据库设计 Skill",
+  "source_skill": "database_design_from_business_flow_skill_v3",
+  "workflow_stage": "03",
+  "upstream": [
+    "idea-check",
+    "tool-pick"
+  ],
+  "downstream": [
+    "talk-link",
+    "server-frame",
+    "work-plan"
+  ],
+  "entrypoint": "SKILL.md"
+}
