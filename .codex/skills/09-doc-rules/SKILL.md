@@ -23,20 +23,20 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 
 本 skill 不应孤立执行。除非用户明确要求单独使用，否则应优先读取或生成以下输入：
 
-- 所有阶段真源文档。
-- 仓库现有 README、docs、AGENTS.md、package.json、pyproject.toml、Makefile、CI 配置、部署配置。
+- `<project-root>/docs/*` 下所有阶段真源文档。
+- 目标项目根目录现有 README、docs、AGENTS.md、package.json、pyproject.toml、Makefile、CI 配置、部署配置。
 - 前端/后端实际命令和测试工具。
 
 ## 4. 下游输出契约
 
 本 skill 必须把结果沉淀成可被后续 skill 直接消费的交付物：
 
-- `README.md`：项目入口说明与文档索引。
-- `docs/README.md` 或 `docs/index.md`：文档导航。
-- `AGENTS.md`：Agent 工作规则、目录地图、命令、禁止事项、验收方法。
-- `.github/workflows/*`：与真实栈匹配的 CI 工作流。
-- `docs/agent-rules/*`：可选的前端、后端、数据库、API 分域规则。
-- `docs/skeleton/*`：骨架候选选择和 delivery target 记录。
+- `<project-root>/README.md`：项目入口说明与文档索引。
+- `<project-root>/docs/README.md` 或 `<project-root>/docs/index.md`：文档导航。
+- `<project-root>/AGENTS.md`：Agent 工作规则、目录地图、命令、禁止事项、验收方法。
+- `<project-root>/.github/workflows/*`：与真实栈匹配的 CI 工作流。
+- `<project-root>/docs/agent-rules/*`：可选的前端、后端、数据库、API 分域规则。
+- `<project-root>/docs/skeleton/*`：骨架候选选择和 delivery target 记录。
 
 ## 5. 与其他 skill 的引用关系
 
@@ -82,14 +82,14 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 
 ## 8. 工作模式补充
 
-本 skill 是工程规则落盘器，不是重新做架构设计。若发现文档与真源冲突，返回对应上游 skill 修正真源，而不是在 README 中自行发明规则。
+本 skill 是目标项目根目录的工程规则落盘器，不是重新做架构设计。若发现文档与真源冲突，返回对应上游 skill 修正真源，而不是在 README 中自行发明规则。
 
 ## 9. 推荐落盘位置
 
-- 阶段真源文档：`docs/`
-- 阶段决策记录：`docs/decisions/`
-- 阶段检查清单：`docs/checklists/`
-- 面向 Agent 的长期约束：`AGENTS.md` 或 `docs/agent-rules/`
+- 阶段真源文档：`<project-root>/docs/`
+- 阶段决策记录：`<project-root>/docs/decisions/`
+- 阶段检查清单：`<project-root>/docs/checklists/`
+- 面向 Agent 的长期约束：`<project-root>/AGENTS.md` 或 `<project-root>/docs/agent-rules/`
 
 ## 10. 继承自原 skill 的详细规则库
 

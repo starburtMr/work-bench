@@ -23,8 +23,8 @@ description: "Choose one maintainable technology stack and dependency policy aft
 
 本 skill 不应孤立执行。除非用户明确要求单独使用，否则应优先读取或生成以下输入：
 
-- `docs/product/project-brief.md`。
-- `docs/product/v1-mvp-scope.md`。
+- `<project-root>/docs/product/project-brief.md`。
+- `<project-root>/docs/product/v1-mvp-scope.md`。
 - 目标平台、部署要求、团队能力、预算、是否商用、上线时间。
 - 现有技术栈或不可变技术约束。
 
@@ -32,11 +32,11 @@ description: "Choose one maintainable technology stack and dependency policy aft
 
 本 skill 必须把结果沉淀成可被后续 skill 直接消费的交付物：
 
-- `docs/architecture/tech-stack-decision.md`：唯一推荐技术栈与选择理由。
-- `docs/architecture/technology-evidence-cards.md`：候选技术证据卡。
-- `docs/architecture/dependency-policy.md`：新增依赖申请规则。
-- `docs/architecture/banned-technology-list.md`：禁用/慎用技术清单。
-- `docs/architecture/stack-reevaluation-triggers.md`：何时允许重评技术栈。
+- `<project-root>/docs/architecture/tech-stack-decision.md`：唯一推荐技术栈与选择理由。
+- `<project-root>/docs/architecture/technology-evidence-cards.md`：候选技术证据卡。
+- `<project-root>/docs/architecture/dependency-policy.md`：新增依赖申请规则。
+- `<project-root>/docs/architecture/banned-technology-list.md`：禁用/慎用技术清单。
+- `<project-root>/docs/architecture/stack-reevaluation-triggers.md`：何时允许重评技术栈。
 
 ## 5. 与其他 skill 的引用关系
 
@@ -86,10 +86,10 @@ description: "Choose one maintainable technology stack and dependency policy aft
 
 ## 9. 推荐落盘位置
 
-- 阶段真源文档：`docs/`
-- 阶段决策记录：`docs/decisions/`
-- 阶段检查清单：`docs/checklists/`
-- 面向 Agent 的长期约束：`AGENTS.md` 或 `docs/agent-rules/`
+- 阶段真源文档：`<project-root>/docs/`
+- 阶段决策记录：`<project-root>/docs/decisions/`
+- 阶段检查清单：`<project-root>/docs/checklists/`
+- 面向 Agent 的长期约束：`<project-root>/AGENTS.md` 或 `<project-root>/docs/agent-rules/`
 
 ## 10. 继承自原 skill 的详细规则库
 

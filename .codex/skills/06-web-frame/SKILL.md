@@ -24,24 +24,24 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 
 本 skill 不应孤立执行。除非用户明确要求单独使用，否则应优先读取或生成以下输入：
 
-- `docs/product/v1-mvp-scope.md` 与用户路径。
-- `docs/architecture/tech-stack-decision.md`。
-- `docs/api/api-contract-source-of-truth.md` 或 OpenAPI / 接口草案。
-- `docs/product/bootstrap-targets.md` 与 `docs/skeleton/frontend-selection.md`。
+- `<project-root>/docs/product/v1-mvp-scope.md` 与用户路径。
+- `<project-root>/docs/architecture/tech-stack-decision.md`。
+- `<project-root>/docs/api/api-contract-source-of-truth.md` 或 OpenAPI / 接口草案。
+- `<project-root>/docs/product/bootstrap-targets.md` 与 `<project-root>/docs/skeleton/frontend-selection.md`。
 - 设计风格、页面清单、组件库约束、已有项目目录和 package 信息。
 
 ## 4. 下游输出契约
 
 本 skill 必须把结果沉淀成可被后续 skill 直接消费的交付物：
 
-- `docs/frontend/frontend-blueprint.md`：前端蓝图。
-- `docs/frontend/architecture-decision-record.md`：前端 ADR。
-- `docs/frontend/project-structure.md`：目录责任与模块边界。
-- `docs/frontend/design-system-tokens.md`：Token、主题、样式约束。
-- `docs/frontend/component-governance.md`：组件分层、复用和抽象规则。
-- `docs/frontend/page-specs.md`：V1 页面规格。
-- `docs/frontend/api-client-contract.md`：API Client、Mock、错误处理、类型生成规则。
-- `docs/frontend/ai-guardrails.md` 与 `docs/frontend/quality-gates.md`。
+- `<project-root>/docs/frontend/frontend-blueprint.md`：前端蓝图。
+- `<project-root>/docs/frontend/architecture-decision-record.md`：前端 ADR。
+- `<project-root>/docs/frontend/project-structure.md`：目录责任与模块边界。
+- `<project-root>/docs/frontend/design-system-tokens.md`：Token、主题、样式约束。
+- `<project-root>/docs/frontend/component-governance.md`：组件分层、复用和抽象规则。
+- `<project-root>/docs/frontend/page-specs.md`：V1 页面规格。
+- `<project-root>/docs/frontend/api-client-contract.md`：API Client、Mock、错误处理、类型生成规则。
+- `<project-root>/docs/frontend/ai-guardrails.md` 与 `<project-root>/docs/frontend/quality-gates.md`。
 
 ## 5. 与其他 skill 的引用关系
 
@@ -88,14 +88,14 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 
 ## 8. 工作模式补充
 
-本 skill 不直接绕过 API 契约写死数据结构。若接口或页面数据不清，回到 `talk-link` 或 `idea-check`。
+本 skill 在 frontend delivery target 中工作，默认是 `<project-root>/frontend`。它不直接绕过 API 契约写死数据结构。若接口或页面数据不清，回到 `talk-link` 或 `idea-check`。
 
 ## 9. 推荐落盘位置
 
-- 阶段真源文档：`docs/`
-- 阶段决策记录：`docs/decisions/`
-- 阶段检查清单：`docs/checklists/`
-- 面向 Agent 的长期约束：`AGENTS.md` 或 `docs/agent-rules/`
+- 阶段真源文档：`<project-root>/docs/`
+- 阶段决策记录：`<project-root>/docs/decisions/`
+- 阶段检查清单：`<project-root>/docs/checklists/`
+- 面向 Agent 的长期约束：`<project-root>/AGENTS.md` 或 `<project-root>/docs/agent-rules/`
 
 ## 10. 继承自原 skill 的详细规则库
 
@@ -113,7 +113,7 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 - 明确组件治理：成熟组件库优先，重复 UI 必须抽象，组件边界清晰。
 - 明确目录边界：页面、模块、组件、接口、样式、工具、类型、测试各归其位。
 - 明确接口契约：统一 API Client、统一错误结构、Mock 策略、OpenAPI 草案。
-- 如果 `skeleton-check` 选择 `create`，先把新候选骨架放进 `frontend/apps`，再把它复制/落地到 delivery target。
+- 如果 `skeleton-check` 选择 `create`，先把新候选骨架放进 `frontend/apps` 并更新 `frontend/README.md` 索引，再把它复制/落地到 frontend delivery target。
 - 明确 AI 约束：后续 Vibe Coding 不能擅自换栈、乱建目录、绕过 Token、复制组件、散落接口。
 
 一句话：**先定规则，再让 AI 进场；把 AI 从“自由艺术家”变成“守规工程师”。**

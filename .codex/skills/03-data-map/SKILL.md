@@ -23,21 +23,21 @@ description: "Design or review relational database schemas from business flows, 
 
 本 skill 不应孤立执行。除非用户明确要求单独使用，否则应优先读取或生成以下输入：
 
-- `docs/product/user-journey-and-data-flow.md`。
-- `docs/product/v1-mvp-scope.md`。
-- `docs/architecture/tech-stack-decision.md`。
+- `<project-root>/docs/product/user-journey-and-data-flow.md`。
+- `<project-root>/docs/product/v1-mvp-scope.md`。
+- `<project-root>/docs/architecture/tech-stack-decision.md`。
 - 前端页面、路由、表单、接口草案或已有数据结构证据。
 
 ## 4. 下游输出契约
 
 本 skill 必须把结果沉淀成可被后续 skill 直接消费的交付物：
 
-- `docs/database/database-design.md`：数据库设计真源文档。
-- `docs/database/business-object-catalog.md`：业务对象目录。
-- `docs/database/relationship-matrix.md`：对象关系矩阵。
-- `docs/database/erd.md` 或 `docs/database/erd.mmd`：ERD。
-- `docs/database/table-specs.md`：表、字段、约束、索引、生命周期。
-- `docs/database/migration-plan.md`：迁移、回滚/前滚、测试数据和上线步骤。
+- `<project-root>/docs/database/database-design.md`：数据库设计真源文档。
+- `<project-root>/docs/database/business-object-catalog.md`：业务对象目录。
+- `<project-root>/docs/database/relationship-matrix.md`：对象关系矩阵。
+- `<project-root>/docs/database/erd.md` 或 `<project-root>/docs/database/erd.mmd`：ERD。
+- `<project-root>/docs/database/table-specs.md`：表、字段、约束、索引、生命周期。
+- `<project-root>/docs/database/migration-plan.md`：迁移、回滚/前滚、测试数据和上线步骤。
 - 按技术栈输出 SQL / ORM / Migration 草案。
 
 ## 5. 与其他 skill 的引用关系
@@ -86,10 +86,10 @@ description: "Design or review relational database schemas from business flows, 
 
 ## 9. 推荐落盘位置
 
-- 阶段真源文档：`docs/`
-- 阶段决策记录：`docs/decisions/`
-- 阶段检查清单：`docs/checklists/`
-- 面向 Agent 的长期约束：`AGENTS.md` 或 `docs/agent-rules/`
+- 阶段真源文档：`<project-root>/docs/`
+- 阶段决策记录：`<project-root>/docs/decisions/`
+- 阶段检查清单：`<project-root>/docs/checklists/`
+- 面向 Agent 的长期约束：`<project-root>/AGENTS.md` 或 `<project-root>/docs/agent-rules/`
 
 ## 10. 继承自原 skill 的详细规则库
 

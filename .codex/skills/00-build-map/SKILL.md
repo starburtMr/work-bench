@@ -44,7 +44,7 @@ description: "Orchestrate the full development workflow from idea to release. Us
 
 ## 4. 状态板
 
-总控过程必须维护状态板，可落盘为 `docs/workflow/development-workflow-stateboard.md`。
+总控过程必须维护状态板，可落盘为 `<project-root>/docs/workflow/development-workflow-stateboard.md`。`<project-root>` 是用户确认的目标项目根目录，不是 work-bench。
 
 ```md
 # 开发工作流状态板
@@ -129,10 +129,11 @@ description: "Orchestrate the full development workflow from idea to release. Us
 
 进入前端或后端骨架实施前必须满足：
 
-- [ ] frontend/backend 的 delivery target 已在 `idea-check` 中确认。
+- [ ] frontend/backend 的 delivery target 已在 `idea-check` 中确认并写入 `<project-root>/docs/product/bootstrap-targets.md`。
+- [ ] `frontend/README.md`、`backend/README.md` 已作为候选骨架索引读取。
 - [ ] `frontend/apps` 和 `backend/apps` 的候选骨架已扫描。
 - [ ] 每侧都给出 `reuse` 或 `create` 结论。
-- [ ] 候选库路径和 delivery target 路径已区分清楚。
+- [ ] 候选库路径和 delivery target 路径已区分清楚；默认不得把 `apps` 目录复制进目标项目。
 
 ### G6：前端骨架门禁
 
@@ -218,21 +219,21 @@ description: "Orchestrate the full development workflow from idea to release. Us
 
 ## 8. 最终交付物清单
 
-完整流程结束后，仓库中至少应有：
+完整流程结束后，目标项目根目录中至少应有：
 
-- `docs/product/*`
-- `docs/architecture/*`
-- `docs/database/*`
-- `docs/api/*`
-- `docs/frontend/*`
-- `docs/backend/*`
-- `docs/skeleton/*`
-- `docs/delivery/*`
-- `docs/workflow/development-workflow-stateboard.md`
-- `docs/quality/*`
-- `README.md`
-- `AGENTS.md`
-- `.github/workflows/*`
+- `<project-root>/docs/product/*`
+- `<project-root>/docs/architecture/*`
+- `<project-root>/docs/database/*`
+- `<project-root>/docs/api/*`
+- `<project-root>/docs/frontend/*`
+- `<project-root>/docs/backend/*`
+- `<project-root>/docs/skeleton/*`
+- `<project-root>/docs/delivery/*`
+- `<project-root>/docs/workflow/development-workflow-stateboard.md`
+- `<project-root>/docs/quality/*`
+- `<project-root>/README.md`
+- `<project-root>/AGENTS.md`
+- `<project-root>/.github/workflows/*`
 
 ## 9. 完成标准
 

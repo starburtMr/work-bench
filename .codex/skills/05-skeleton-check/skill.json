@@ -1,21 +1,20 @@
 {
-  "name": "final-check",
+  "name": "skeleton-check",
   "version": "1.0.0",
   "language": "zh-CN",
-  "title": "全链路质量门禁与发布准备 Skill",
+  "title": "骨架候选检查 Skill",
   "source_skill": "new",
-  "workflow_stage": "10",
+  "workflow_stage": "05",
   "upstream": [
     "idea-check",
     "tool-pick",
     "data-map",
-    "talk-link",
-    "skeleton-check",
+    "talk-link"
+  ],
+  "downstream": [
     "web-frame",
     "server-frame",
-    "work-plan",
-    "doc-rules"
+    "work-plan"
   ],
-  "downstream": [],
   "entrypoint": "SKILL.md"
 }

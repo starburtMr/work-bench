@@ -4,12 +4,13 @@
   "language": "zh-CN",
   "title": "MVP 功能切片与交付计划 Skill",
   "source_skill": "new",
-  "workflow_stage": "07",
+  "workflow_stage": "08",
   "upstream": [
     "idea-check",
     "tool-pick",
     "data-map",
     "talk-link",
+    "skeleton-check",
     "web-frame",
     "server-frame"
   ],

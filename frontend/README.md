@@ -1,35 +1,46 @@
-# Frontend Index
+# Frontend Skeleton Index
 
-这个目录下放的是 3 个前端示例和一组共享说明文档。
-这份文件只做索引，方便快速定位每个项目的作用。
+This directory is the frontend skeleton library for work-bench. It records reusable candidates under `apps/*` so `skeleton-check` can compare them before choosing `reuse` or `create`.
 
-## 示例项目
+This file is only an index for skeleton candidates. It does not define target project paths or delivery targets.
 
-| 目录 | 作用 | 适合场景 |
-| --- | --- | --- |
-| [apps/react-vite](./apps/react-vite) | React + Vite + React Router 示例 | 快速做页面、做纯前端 SPA 原型、看最轻量的实现 |
-| [apps/nextjs-app](./apps/nextjs-app) | Next.js App Router 示例 | 需要现代 Next.js 写法、布局嵌套、SSR 和 Server Components |
-| [apps/nextjs-pages](./apps/nextjs-pages) | Next.js Pages Router 示例 | 维护旧 Next.js 项目、理解传统 Pages Router、做迁移参考 |
+## Candidates
 
-## 共享文档
+| Candidate | Stack | Best for | Poor fit for | Local guidance | Verification entry points |
+| --- | --- | --- | --- | --- | --- |
+| [apps/react-vite](./apps/react-vite) | React 18, Vite, React Router, TanStack Query, Vitest, Playwright, Storybook | SPA prototypes, dashboards, tools that do not need Next.js routing or server rendering | Projects requiring Next.js SSR, App Router, or Pages Router compatibility | [README](./apps/react-vite/README.md), [AGENTS](./apps/react-vite/AGENTS.md), [docs](./apps/react-vite/docs) | `yarn lint`, `yarn check-types`, `yarn test`, `yarn build`, `yarn test-e2e` |
+| [apps/nextjs-app](./apps/nextjs-app) | Next.js App Router, React, TypeScript, TanStack Query, Vitest, Playwright, Storybook | Modern Next.js apps needing App Router layouts, nested routes, and server-capable structure | Legacy Pages Router maintenance or pure SPA-only prototypes | [README](./apps/nextjs-app/README.md), [AGENTS](./apps/nextjs-app/AGENTS.md), [docs](./apps/nextjs-app/docs) | `yarn lint`, `yarn check-types`, `yarn test`, `yarn build`, `yarn test-e2e` |
+| [apps/nextjs-pages](./apps/nextjs-pages) | Next.js Pages Router, React, TypeScript, TanStack Query, Vitest, Playwright, Storybook | Maintaining or bootstrapping traditional Next.js Pages Router projects | New App Router-first projects or SPA-only prototypes | [README](./apps/nextjs-pages/README.md), [AGENTS](./apps/nextjs-pages/AGENTS.md), [docs](./apps/nextjs-pages/docs) | `yarn lint`, `yarn check-types`, `yarn test`, `yarn build`, `yarn test-e2e` |
 
-- [docs/application-overview.md](./docs/application-overview.md) - 整个 demo 的业务概览
-- [docs/project-structure.md](./docs/project-structure.md) - 通用目录结构和分层思路
-- [docs/project-standards.md](./docs/project-standards.md) - 代码和协作规范
-- [docs/api-layer.md](./docs/api-layer.md) - API 层约定
-- [docs/state-management.md](./docs/state-management.md) - 状态管理约定
-- [docs/testing.md](./docs/testing.md) - 测试策略
-- [docs/components-and-styling.md](./docs/components-and-styling.md) - 组件和样式约定
-- [docs/performance.md](./docs/performance.md) - 性能建议
-- [docs/error-handling.md](./docs/error-handling.md) - 错误处理建议
-- [docs/security.md](./docs/security.md) - 安全建议
+## Shared Reference Docs
 
-## 每个示例自己的说明
+These shared docs describe common frontend expectations across the examples:
 
-每个示例目录下还有自己的 `AGENTS.md` 和 `docs/`：
+- [docs/application-overview.md](./docs/application-overview.md)
+- [docs/project-structure.md](./docs/project-structure.md)
+- [docs/project-standards.md](./docs/project-standards.md)
+- [docs/api-layer.md](./docs/api-layer.md)
+- [docs/state-management.md](./docs/state-management.md)
+- [docs/testing.md](./docs/testing.md)
+- [docs/components-and-styling.md](./docs/components-and-styling.md)
+- [docs/performance.md](./docs/performance.md)
+- [docs/error-handling.md](./docs/error-handling.md)
+- [docs/security.md](./docs/security.md)
 
-- `apps/react-vite`
-- `apps/nextjs-app`
-- `apps/nextjs-pages`
+## How skeleton-check Should Use This Index
 
-它们只对各自示例生效，用来写更具体的技术栈和开发约束。
+1. Read this index before scanning `apps/*`.
+2. Use the candidate table to shortlist likely matches.
+3. Read each shortlisted candidate's local README, AGENTS.md, docs, and package scripts.
+4. Decide `reuse` when an existing candidate matches the requested stack and product shape.
+5. Decide `create` when no candidate fits; add the new candidate under `apps/*` and update this index in the same change.
+
+## Adding a Candidate
+
+When adding a frontend skeleton candidate:
+
+- Place it under `apps/<candidate-name>`.
+- Include a local `README.md`.
+- Include local `AGENTS.md` when the skeleton has stack-specific agent rules.
+- Include `docs/` when the skeleton has reusable architecture, testing, deployment, or style guidance.
+- Add a row to the Candidates table with stack, best-fit, poor-fit, guidance links, and verification entry points.

@@ -1,0 +1,70 @@
+name: "fastapi-ddd"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-ddd-api
+    depends_on:
+      database:
+        condition: service_healthy
+    expose:
+      - "${APPLICATION_PORT}"
+    networks:
+      - fastapi-ddd-network
+    ports:
+      - "${APPLICATION_PORT}:3000"
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+
+  database:
+    container_name: fastapi-ddd-database
+    environment:
+      - "POSTGRES_DB=${POSTGRESQL_DATABASE}"
+      - "POSTGRES_USER=${POSTGRESQL_USERNAME}"
+      - "POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}"
+    expose:
+      - "${POSTGRESQL_PORT}"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d \"$${POSTGRES_DB}\" -U \"$${POSTGRES_USER}\"" ]
+      interval: 3s
+      timeout: 5s
+      retries: 20
+      start_period: 5s
+    image: "postgres:17.4-bullseye"
+    networks:
+      - fastapi-ddd-network
+    ports:
+      - "${POSTGRESQL_PORT}:5432"
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  database-admin:
+    image: "dpage/pgadmin4:9.2"
+    container_name: fastapi-ddd-database-admin
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}"
+      - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}"
+    expose:
+      - "${PGADMIN_PORT}"
+    networks:
+      - fastapi-ddd-network
+    ports:
+      - "${PGADMIN_PORT}:80"
+    restart: unless-stopped
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  fastapi-ddd-network:
+    name: fastapi-ddd-network

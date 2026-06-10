@@ -24,23 +24,23 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 本 skill 不应孤立执行。除非用户明确要求单独使用，否则应优先读取或生成以下输入：
 
-- `docs/product/v1-mvp-scope.md` 与权限/异常边界。
-- `docs/architecture/tech-stack-decision.md`。
-- `docs/database/database-design.md` 与迁移计划。
-- `docs/api/api-contract-source-of-truth.md`、错误码、认证策略和接口返回规范。
-- `docs/product/bootstrap-targets.md` 与 `docs/skeleton/backend-selection.md`。
+- `<project-root>/docs/product/v1-mvp-scope.md` 与权限/异常边界。
+- `<project-root>/docs/architecture/tech-stack-decision.md`。
+- `<project-root>/docs/database/database-design.md` 与迁移计划。
+- `<project-root>/docs/api/api-contract-source-of-truth.md`、错误码、认证策略和接口返回规范。
+- `<project-root>/docs/product/bootstrap-targets.md` 与 `<project-root>/docs/skeleton/backend-selection.md`。
 
 ## 4. 下游输出契约
 
 本 skill 必须把结果沉淀成可被后续 skill 直接消费的交付物：
 
-- `docs/backend/backend-architecture-source-of-truth.md`：后端架构真源文档。
-- `docs/backend/api-contract.md`：后端 API 约束与实现边界。
-- `docs/backend/error-codes.md`：业务错误码与错误返回规范。
-- `docs/backend/file-responsibility-map.md`：目录/文件责任表。
-- `docs/backend/runbook.md`：启动、配置、数据库连接、日志、排障。
-- `docs/backend/security-baseline.md`：认证、权限、输入校验、密钥与日志安全。
-- `docs/backend/acceptance-report.md`：运行证据与验收报告。
+- `<project-root>/docs/backend/backend-architecture-source-of-truth.md`：后端架构真源文档。
+- `<project-root>/docs/backend/api-contract.md`：后端 API 约束与实现边界。
+- `<project-root>/docs/backend/error-codes.md`：业务错误码与错误返回规范。
+- `<project-root>/docs/backend/file-responsibility-map.md`：目录/文件责任表。
+- `<project-root>/docs/backend/runbook.md`：启动、配置、数据库连接、日志、排障。
+- `<project-root>/docs/backend/security-baseline.md`：认证、权限、输入校验、密钥与日志安全。
+- `<project-root>/docs/backend/acceptance-report.md`：运行证据与验收报告。
 
 ## 5. 与其他 skill 的引用关系
 
@@ -89,14 +89,14 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 ## 8. 工作模式补充
 
-本 skill 可以与前端骨架并行，但二者必须共同引用 `talk-link` 的接口真源。若后端发现数据模型不支持接口，应回到数据库 skill 修订。
+本 skill 在 backend delivery target 中工作，默认是 `<project-root>/backend`。它可以与前端骨架并行，但二者必须共同引用 `talk-link` 的接口真源。若后端发现数据模型不支持接口，应回到数据库 skill 修订。
 
 ## 9. 推荐落盘位置
 
-- 阶段真源文档：`docs/`
-- 阶段决策记录：`docs/decisions/`
-- 阶段检查清单：`docs/checklists/`
-- 面向 Agent 的长期约束：`AGENTS.md` 或 `docs/agent-rules/`
+- 阶段真源文档：`<project-root>/docs/`
+- 阶段决策记录：`<project-root>/docs/decisions/`
+- 阶段检查清单：`<project-root>/docs/checklists/`
+- 面向 Agent 的长期约束：`<project-root>/AGENTS.md` 或 `<project-root>/docs/agent-rules/`
 
 ## 10. 继承自原 skill 的详细规则库
 
@@ -108,7 +108,7 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 本 Skill 用于 Vibe Coding 场景下的后端工程控制。它不把后端当成“写几个接口”，而是把后端视为产品背后的**业务裁判层**：后端负责判断用户是谁、能不能做、该怎么做、数据如何变化、失败如何返回、日志如何追踪、密钥如何隔离、权限谁说了算。
 
-如果 `skeleton-check` 选择 `create`，先把新候选骨架放进 `backend/apps`，再把它复制/落地到 delivery target。
+如果 `skeleton-check` 选择 `create`，先把新候选骨架放进 `backend/apps` 并更新 `backend/README.md` 索引，再把它复制/落地到 backend delivery target。
 
 本 Skill 有两个工作模式：
 
@@ -799,7 +799,7 @@ HTTP 请求
 要求：
 
 - 错误码必须集中维护；
-- 新增错误码必须登记在 `docs/error-codes.md` 或等价真源文档；
+- 新增错误码必须登记在 `<project-root>/docs/backend/error-codes.md` 或等价真源文档；
 - 不得在业务文件里随手新增魔法字符串；
 - 错误 message 可面向用户，code 必须稳定面向程序。
 
@@ -944,11 +944,11 @@ HTTP 请求
 - 权限校验占位；
 - API 文档入口或 OpenAPI 说明；
 - README / Runbook；
-- `docs/backend-architecture-source-of-truth.md`；
-- `docs/file-responsibility-map.md`；
-- `docs/api-contract.md`；
-- `docs/error-codes.md`；
-- `docs/acceptance-report.md`。
+- `<project-root>/docs/backend/backend-architecture-source-of-truth.md`；
+- `<project-root>/docs/backend/file-responsibility-map.md`；
+- `<project-root>/docs/backend/api-contract.md`；
+- `<project-root>/docs/backend/error-codes.md`；
+- `<project-root>/docs/backend/acceptance-report.md`。
 
 禁止骨架阶段实现真实业务逻辑。
 
@@ -1039,7 +1039,7 @@ HTTP 请求
 验收通过后，生成或更新：
 
 ```text
-docs/backend-architecture-source-of-truth.md
+<project-root>/docs/backend/backend-architecture-source-of-truth.md
 ```
 
 该文档是后续业务开发唯一权威源。
@@ -1314,7 +1314,7 @@ git commit -m "chore: backend architecture partial repair — verification pendi
 
 | 规则 | 来源 | 文件路径 | 验证命令/日志 | 实际结果 | 状态 |
 |---|---|---|---|---|---|
-| 统一响应格式 | docs/api-contract.md | src/common/response.* | curl ... | 返回符合规范 | 通过 |
+| 统一响应格式 | <project-root>/docs/backend/api-contract.md | src/common/response.* | curl ... | 返回符合规范 | 通过 |
 ```
 
 不合格情况：

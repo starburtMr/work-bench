@@ -6,7 +6,41 @@ description: "Split a V1 MVP into vertical slices, tickets, PR boundaries, depen
 # MVP 功能切片与交付计划 Skill
 
 
-## 1. 上下游引用
+## 1. 在完整开发工作流中的位置
+
+- 阶段编号：`08`
+- 阶段名称：MVP 功能切片 / 交付计划冻结
+- 总控入口：[`build-map`](../00-build-map/SKILL.md)
+- 本阶段目标：把 V1 MVP 拆成可执行、可验收、可回滚的垂直切片任务和 PR 边界。
+
+## 2. 何时启用
+
+当前端骨架、后端骨架、数据库设计和 API 契约已经通过阶段验收后，且 `skeleton-check` 已经给出前后端候选判定时，启用本 skill。它不替代编码，而是防止开发顺序混乱、AI 一次性改太多文件、PR 无法审查。
+
+## 3. 上游输入契约
+
+本 skill 不应孤立执行。除非用户明确要求单独使用，否则应优先读取或生成以下输入：
+
+- `<project-root>/docs/product/v1-mvp-scope.md`
+- `<project-root>/docs/product/user-journey-and-data-flow.md`
+- `<project-root>/docs/architecture/tech-stack-decision.md`
+- `<project-root>/docs/database/database-design.md`
+- `<project-root>/docs/api/api-contract-source-of-truth.md`
+- `<project-root>/docs/skeleton/skeleton-selection-report.md`
+- `<project-root>/docs/skeleton/delivery-targets.md`
+- `<project-root>/docs/frontend/frontend-blueprint.md`
+- `<project-root>/docs/backend/backend-architecture-source-of-truth.md`
+
+## 4. 下游输出契约
+
+- `<project-root>/docs/delivery/mvp-feature-slice-plan.md`：V1 垂直切片计划。
+- `<project-root>/docs/delivery/implementation-backlog.md`：按依赖排序的任务池。
+- `<project-root>/docs/delivery/pr-plan.md`：PR 粒度、改动范围、验收命令。
+- `<project-root>/docs/delivery/feature-dependency-map.md`：前端、后端、数据库、API、第三方依赖关系。
+- `<project-root>/docs/delivery/definition-of-done.md`：每类任务的完成定义。
+- `<project-root>/docs/delivery/change-control.md`：需求变更、接口变更、依赖变更处理规则。
+
+## 5. 与其他 skill 的引用关系
 
 ### 上游 skill
 
@@ -23,34 +57,15 @@ description: "Split a V1 MVP into vertical slices, tickets, PR boundaries, depen
 - [`doc-rules`](../09-doc-rules/SKILL.md)
 - [`final-check`](../10-final-check/SKILL.md)
 
-## 2. 何时启用
+### 5.3 交接载荷
 
-当前端骨架、后端骨架、数据库设计和 API 契约已经通过阶段验收后，且 `skeleton-check` 已经给出前后端候选判定时，启用本 skill，把 V1 MVP 拆成可执行、可验收、可回滚的垂直切片任务。它不替代编码，而是防止开发顺序混乱、AI 一次性改太多文件、PR 无法审查。
+交给下游时，至少携带以下信息：
 
-## 3. 输入契约
+- V1 垂直切片计划、任务池和 PR 计划。
+- 每个切片的用户价值、改动范围、禁止范围、验收命令和回滚方式。
+- 功能依赖图、DoD 和变更控制规则。
 
-必须读取：
-
-- `docs/product/v1-mvp-scope.md`
-- `docs/product/user-journey-and-data-flow.md`
-- `docs/architecture/tech-stack-decision.md`
-- `docs/database/database-design.md`
-- `docs/api/api-contract-source-of-truth.md`
-- `docs/skeleton/skeleton-selection-report.md`
-- `docs/skeleton/delivery-targets.md`
-- `docs/frontend/frontend-blueprint.md`
-- `docs/backend/backend-architecture-source-of-truth.md`
-
-## 4. 输出契约
-
-- `docs/delivery/mvp-feature-slice-plan.md`：V1 垂直切片计划。
-- `docs/delivery/implementation-backlog.md`：按依赖排序的任务池。
-- `docs/delivery/pr-plan.md`：PR 粒度、改动范围、验收命令。
-- `docs/delivery/feature-dependency-map.md`：前端、后端、数据库、API、第三方依赖关系。
-- `docs/delivery/definition-of-done.md`：每类任务的完成定义。
-- `docs/delivery/change-control.md`：需求变更、接口变更、依赖变更处理规则。
-
-## 5. 切片原则
+## 6. 切片原则
 
 1. 优先按用户价值闭环切片，而不是按技术层切片。
 2. 每个切片必须有可观察结果，例如“用户能创建项目并在列表看到”。
@@ -61,7 +76,7 @@ description: "Split a V1 MVP into vertical slices, tickets, PR boundaries, depen
 7. 每个任务必须写清楚：输入文档、允许改动文件、禁止改动文件、验收命令、回滚方式。
 8. 对高风险任务必须先做 spike 或验证任务，再进入正式实现。
 
-## 6. 标准工作流
+## 7. 标准工作流
 
 ### Step 1：从 V1 Must-have 提取用户闭环
 
@@ -119,7 +134,7 @@ description: "Split a V1 MVP into vertical slices, tickets, PR boundaries, depen
 - 是否影响 V1 边界；
 - 是否需要更新 AGENTS.md 或 CI。
 
-## 7. 输出模板
+## 8. 输出模板
 
 ```md
 # V1 MVP 垂直切片计划
@@ -161,10 +176,17 @@ description: "Split a V1 MVP into vertical slices, tickets, PR boundaries, depen
 ## 6. 变更控制
 ```
 
-## 8. 阶段完成门禁
+## 9. 阶段完成门禁
 
 - [ ] 所有 V1 Must-have 都映射到垂直切片或明确被延后。
 - [ ] 每个切片能追溯到产品、API、数据库、前端和后端真源文档。
 - [ ] 每个 PR 粒度可审查、可测试、可回滚。
 - [ ] 已明确禁止范围，防止 AI 扩写到 V2/V3。
 - [ ] 每个切片都有验收命令和手工验收路径。
+
+## 10. 推荐落盘位置
+
+- 阶段真源文档：`<project-root>/docs/`
+- 阶段决策记录：`<project-root>/docs/decisions/`
+- 阶段检查清单：`<project-root>/docs/checklists/`
+- 面向 Agent 的长期约束：`<project-root>/AGENTS.md` 或 `<project-root>/docs/agent-rules/`

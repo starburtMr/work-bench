@@ -18,7 +18,7 @@ description: "Turn a vague product idea into a clear product brief, MVP scope, u
 - 用户只有产品想法但边界不清。
 - 用户准备 vibe coding，但还没定义 MVP、用户路径、对象、验收标准。
 - 用户需要 PRD、项目立项说明、版本路线图或 Agent 协作规则。
-- 用户需要初始化前端或后端骨架，但还没说清楚具体要落到哪个目录。
+- 用户需要初始化前端或后端骨架，但还没说清楚目标项目根目录或具体 delivery target。
 
 ## 3. 上游输入契约
 
@@ -26,23 +26,23 @@ description: "Turn a vague product idea into a clear product brief, MVP scope, u
 
 - 用户的原始想法、目标用户、使用场景、核心痛点或现有材料。
 - 若已有 PRD、竞品、草图、流程图、页面截图，应作为证据输入，而不是让 AI 脑补。
-- 先确认本次初始化要落到的 delivery target：
-  - frontend 的目标根目录
-  - backend 的目标根目录
+- 如果本阶段会写入、复制或生成项目文件，必须先确认目标项目根目录 `<project-root>` 和本次初始化要落到的 delivery target：
+  - frontend delivery target，默认 `<project-root>/frontend`
+  - backend delivery target，默认 `<project-root>/backend`
   - 如果只做单侧，就只记录那一侧
 
 ## 4. 下游输出契约
 
 本 skill 必须把结果沉淀成可被后续 skill 直接消费的交付物：
 
-- `docs/product/project-brief.md`：项目立项说明。
-- `docs/product/discovery-stateboard.md`：已确认 / 待确认 / 假设 / 风险状态板。
-- `docs/product/bootstrap-targets.md`：frontend/backend 初始化目标路径与落地约束。
-- `docs/product/v1-mvp-scope.md`：V1 Must / Should / Could / Won't 边界。
-- `docs/product/user-journey-and-data-flow.md`：用户路径、页面流、核心对象、数据流。
-- `docs/product/risk-validation-plan.md`：价值、可用、可行、可持续风险与验证计划。
-- `docs/product/version-roadmap.md`：V1 / V1.1 / V2 / V3 路线图。
-- `docs/product/agent-constitution.md`：后续 AI 协作宪法。
+- `<project-root>/docs/product/project-brief.md`：项目立项说明。
+- `<project-root>/docs/product/discovery-stateboard.md`：已确认 / 待确认 / 假设 / 风险状态板。
+- `<project-root>/docs/product/bootstrap-targets.md`：目标项目根目录、frontend/backend delivery target 与落地约束。
+- `<project-root>/docs/product/v1-mvp-scope.md`：V1 Must / Should / Could / Won't 边界。
+- `<project-root>/docs/product/user-journey-and-data-flow.md`：用户路径、页面流、核心对象、数据流。
+- `<project-root>/docs/product/risk-validation-plan.md`：价值、可用、可行、可持续风险与验证计划。
+- `<project-root>/docs/product/version-roadmap.md`：V1 / V1.1 / V2 / V3 路线图。
+- `<project-root>/docs/product/agent-constitution.md`：后续 AI 协作宪法。
 
 ## 5. 与其他 skill 的引用关系
 
@@ -89,14 +89,14 @@ description: "Turn a vague product idea into a clear product brief, MVP scope, u
 
 本 skill 是整个集合的第一阶段。除非用户已经提供高质量 PRD，否则不要跳过。若用户要求“直接开干”，先用本 skill 做最小 V0 收敛，再交给技术选型。
 
-初始化骨架时，第一件事是问清楚 frontend/backend 的落地路径，然后把该路径写入 `docs/product/bootstrap-targets.md` 再继续后续讨论。
+初始化骨架且即将写入、复制或生成文件时，第一件事是问清楚目标项目根目录和 frontend/backend delivery target，然后写入 `<project-root>/docs/product/bootstrap-targets.md` 再继续后续讨论。若目标项目根目录不存在，必须先征得用户确认再创建。若当前只做分析、审查或方案草案，可以先标注路径假设并继续，进入文件写入前再确认。
 
 ## 9. 推荐落盘位置
 
-- 阶段真源文档：`docs/`
-- 阶段决策记录：`docs/decisions/`
-- 阶段检查清单：`docs/checklists/`
-- 面向 Agent 的长期约束：`AGENTS.md` 或 `docs/agent-rules/`
+- 阶段真源文档：`<project-root>/docs/`
+- 阶段决策记录：`<project-root>/docs/decisions/`
+- 阶段检查清单：`<project-root>/docs/checklists/`
+- 面向 Agent 的长期约束：`<project-root>/AGENTS.md` 或 `<project-root>/docs/agent-rules/`
 
 ## 10. 继承自原 skill 的详细规则库
 
