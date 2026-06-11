@@ -29,6 +29,10 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 - `<project-root>/docs/database/database-design.md` 与迁移计划。
 - `<project-root>/docs/api/api-contract-source-of-truth.md`、错误码、认证策略和接口返回规范。
 - `<project-root>/docs/product/bootstrap-targets.md` 与 `<project-root>/docs/skeleton/backend-selection.md`。
+- 模式 B 审计已有后端时，优先生成或读取 [`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md) 产物：
+  - `<project-root>/docs/backend/dfd/顶层图.md`
+  - `<project-root>/docs/backend/dfd/0层图.md`
+  - `<project-root>/docs/backend/dfd/证据表.md`
 
 ## 4. 下游输出契约
 
@@ -41,6 +45,7 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 - `<project-root>/docs/backend/runbook.md`：启动、配置、数据库连接、日志、排障。
 - `<project-root>/docs/backend/security-baseline.md`：认证、权限、输入校验、密钥与日志安全。
 - `<project-root>/docs/backend/acceptance-report.md`：运行证据与验收报告。
+- 模式 B 条件输出 `<project-root>/docs/backend/dfd/`：现有后端逻辑数据流图和证据表。
 
 ## 5. 与其他 skill 的引用关系
 
@@ -51,6 +56,7 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 - [`data-map`](../03-data-map/SKILL.md)
 - [`talk-link`](../04-talk-link/SKILL.md)
 - [`skeleton-check`](../05-skeleton-check/SKILL.md)
+- 条件上游：[`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md)，仅用于模式 B 的现有后端代码审计、修复和架构收敛。
 
 ### 5.2 下游 skill
 
@@ -66,6 +72,7 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 - API 实现边界、错误码、日志/追踪规则。
 - 数据库连接和数据访问边界。
 - 目录/文件责任表和框架复用清单。
+- 模式 B 的 DFD 证据引用：系统边界、主要加工、数据存储、敏感数据流和代码证据索引。
 - 运行证据、已知风险、待修复项。
 
 ## 6. 本阶段不可违反的硬规则
@@ -77,6 +84,8 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 5. 密钥不得硬编码；配置与密钥必须隔离。
 6. 每个目录和关键文件必须有责任登记。
 7. 框架原生能力优先，禁止为了炫技重复造框架。
+8. 模式 B 审计已有后端时，不得跳过 DFD 证据门；模式 A 0→1 骨架搭建不强制生成 DFD。
+9. DFD 是静态逻辑数据流证据，不替代启动、健康检查、接口响应、测试结果或运行证据包。
 
 ## 7. 阶段完成门禁
 
@@ -1091,6 +1100,24 @@ git commit -m "chore: backend architecture baseline — verification pending"
 
 ### 9. 模式 B：现有后端代码梳理、审计、修复
 
+#### B0. DFD 证据门
+
+模式 B 面对已有后端代码，必须先调用或引用 [`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md)，建立路由、Controller/Handler、Service、Repository/Data Access、数据存储和外部实体之间的逻辑数据流。
+
+推荐输出：
+
+- `<project-root>/docs/backend/dfd/顶层图.md`
+- `<project-root>/docs/backend/dfd/0层图.md`
+- `<project-root>/docs/backend/dfd/证据表.md`
+
+执行约束：
+
+- 不得跳过 `reverse-dfd-analysis` 的目标层级门禁；缺少顶层图或父加工时，必须先补前置 DFD 或标注证据缺口。
+- 使用 DFD 检查路由是否承载复杂业务、Service 是否绕过权限、Repository 是否处理 HTTP 或角色判断、Controller 是否直接 SQL。
+- 使用 DFD 检查敏感数据流是否经过输入校验、认证/授权、错误处理和日志脱敏边界。
+- DFD 可辅助生成目录/文件责任表和安全基线，但不能替代运行证据、健康检查、API 响应或测试结果。
+- 模式 A “0→1 后端可运行骨架搭建”不强制生成 DFD；只有用户明确要求或已有代码需要反推时才使用。
+
 #### B1. 现状盘点
 
 先读取或检查项目文件，输出《现有后端现状报告》。必须包含：
@@ -1117,6 +1144,7 @@ git commit -m "chore: backend architecture baseline — verification pending"
 - 是否有 API 文档；
 - 是否有测试；
 - Git 当前状态。
+- DFD 证据路径或未生成原因。
 
 模板：
 
@@ -1135,6 +1163,7 @@ git commit -m "chore: backend architecture baseline — verification pending"
 | 日志 | ... | ... | 低/中/高 |
 | 数据库连接 | ... | ... | 低/中/高 |
 | 权限校验 | ... | ... | 低/中/高 |
+| DFD 证据 | ... | ... | 低/中/高 |
 ```
 
 #### B2. 架构问题审计
@@ -1157,6 +1186,8 @@ git commit -m "chore: backend architecture baseline — verification pending"
 | High | 高风险，需优先修 | 无鉴权、接口越权风险、无统一错误处理、数据库访问散落 |
 | Medium | 中风险，应近期修 | 目录边界不清、日志不完整、响应格式不统一 |
 | Low | 可排期优化 | README 不完整、命名不统一、少量未用封装 |
+
+架构问题审计应引用 DFD 证据来说明跨层调用、数据访问越界、敏感数据流绕过校验、错误处理或日志脱敏缺口。没有 DFD 支撑的推断必须标为未验证。
 
 #### B3. 目录责任重建
 

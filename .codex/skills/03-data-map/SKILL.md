@@ -27,6 +27,10 @@ description: "Design or review relational database schemas from business flows, 
 - `<project-root>/docs/product/v1-mvp-scope.md`。
 - `<project-root>/docs/architecture/tech-stack-decision.md`。
 - 前端页面、路由、表单、接口草案或已有数据结构证据。
+- 当数据库设计来自已有代码、已有前端页面、已有 API 或旧项目反推时，优先生成或读取 [`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md) 产物：
+  - `<project-root>/docs/database/dfd/顶层图.md`
+  - `<project-root>/docs/database/dfd/0层图.md`
+  - `<project-root>/docs/database/dfd/证据表.md`
 
 ## 4. 下游输出契约
 
@@ -46,6 +50,7 @@ description: "Design or review relational database schemas from business flows, 
 
 - [`idea-check`](../01-idea-check/SKILL.md)
 - [`tool-pick`](../02-tool-pick/SKILL.md)
+- 条件上游：[`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md)，仅用于已有代码、已有 UI/API、旧项目或反推设计场景。
 
 ### 5.2 下游 skill
 
@@ -70,6 +75,8 @@ description: "Design or review relational database schemas from business flows, 
 3. 严禁凭空造表；所有推导必须标注已确认、合理推导或待确认。
 4. 金额、密码、权限、审计、软删除、敏感数据等高风险字段必须按安全规则设计。
 5. 索引必须来自真实查询路径，不得为了“看起来快”滥建索引。
+6. 已有代码反推数据库时，不得跳过 DFD 层级门禁；缺少顶层图或父加工时，必须先补前置 DFD 或标注证据缺口。
+7. DFD 是数据库设计输入证据，不替代 ERD、表设计、迁移计划或数据库验收。
 
 ## 7. 阶段完成门禁
 
@@ -164,16 +171,29 @@ description: "Design or review relational database schemas from business flows, 
 
 1. 用户明确描述的业务规则、流程、角色、约束。
 2. PRD、功能列表、接口文档、数据库草稿、截图。
-3. 前端路由、页面、表单、表格列、详情页、后台页面。
-4. API 调用、loader/action/server handler、validation schema、DTO、service 层。
-5. 状态管理、缓存 key、埋点、日志、权限守卫。
-6. 行业常见模式中的合理假设。
+3. 已有代码反推场景中的 DFD 图和证据表：`docs/database/dfd/顶层图.md`、`docs/database/dfd/0层图.md`、`docs/database/dfd/证据表.md`。
+4. 前端路由、页面、表单、表格列、详情页、后台页面。
+5. API 调用、loader/action/server handler、validation schema、DTO、service 层。
+6. 状态管理、缓存 key、埋点、日志、权限守卫。
+7. 行业常见模式中的合理假设。
 
 输出时必须区分：
 
 - **已确认**：用户或代码中明确存在。
 - **合理推导**：从页面、流程、接口或行业惯例推导出来。
 - **待确认**：会影响数据库结构，但当前证据不足。
+
+#### 3.1.1 DFD 输入证据规则
+
+当本 skill 的输入来自已有代码、已有前端页面、已有 API 或旧项目反推时，必须先调用或引用 [`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md)，再进入表设计。
+
+使用 DFD 时遵守：
+
+- `业务流程证据` 引用 DFD 中的加工和数据流。
+- `核心业务对象` 引用 DFD 中的数据存储、数据流和 `证据表.md`。
+- `对象关系矩阵`、`table-specs.md` 和查询计划必须能追溯到 DFD 证据，或标注为合理推导/待确认。
+- 索引不能只来自表字段猜测；必须结合 DFD 中的读数据流、写数据流、页面/API 入口和真实查询路径。
+- 不为新项目 0 到 1 设计强制生成 DFD；此时继续以 PRD、用户旅程和业务流程证据为主。
 
 #### 3.2 信息不足时的处理
 
@@ -476,15 +496,16 @@ description: "Design or review relational database schemas from business flows, 
 - 是否需要 Redis：
 - 首轮范围：
 - 关键假设：
+- DFD 输入证据：适用/不适用；如适用，引用 `docs/database/dfd/顶层图.md`、`docs/database/dfd/0层图.md`、`docs/database/dfd/证据表.md`
 
 ## 2. 业务流程证据
-| 流程 | 角色 | 页面/入口 | 动作 | 读数据 | 写数据 | 候选对象 |
+| 流程 | 角色 | 页面/入口 | 动作 | 读数据 | 写数据 | 候选对象 | 来源 DFD 元素/证据 |
 
 ## 3. 核心业务对象
-| 对象 | 来源 | 职责 | 类型 | 生命周期 | 待确认 |
+| 对象 | 来源 | 职责 | 类型 | 生命周期 | 来源 DFD 元素/证据 | 待确认 |
 
 ## 4. 对象关系矩阵
-| 主对象 | 从对象 | 关系 | 外键/中间表 | 删除策略 | 说明 |
+| 主对象 | 从对象 | 关系 | 外键/中间表 | 删除策略 | 证据级别 | 说明 |
 
 ## 5. ERD
 使用 Mermaid 或文字说明。
@@ -518,6 +539,7 @@ description: "Design or review relational database schemas from business flows, 
 交付前必须自查：
 
 - 是否所有表都能追溯到业务流程？
+- 已有代码反推场景下，是否所有核心表都能追溯到 DFD 元素或 `证据表.md`？
 - 是否存在“看起来常见但业务没出现”的幻觉表？
 - 是否所有多对多关系都有中间表？
 - 是否每个外键都说明方向和删除策略？

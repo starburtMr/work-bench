@@ -19,6 +19,7 @@ description: "Evidence-driven rescue diagnosis for already-started projects that
 - 阶段名称：已开工项目补救诊断 / Project Rescue Mapping
 - 总控入口：[`build-map`](../00-build-map/SKILL.md)
 - 适用对象：已经存在代码、文档、配置或半成品交付物，但没有按 [`01-idea-check`](../01-idea-check/SKILL.md) 到 [`10-final-check`](../10-final-check/SKILL.md) 完成阶段真源的项目。
+- 条件证据入口：[`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md)，用于已有代码场景下反推逻辑数据流和代码证据索引。
 - 核心目标：识别产品、技术、数据、API、前端、后端、计划、文档、质量、安全、交付之间的缺口和冲突，输出**阶段级补救路线图**。
 
 ---
@@ -230,6 +231,7 @@ description: "Evidence-driven rescue diagnosis for already-started projects that
 | 利益相关方与决策 | 谁能拍板？哪些决策未记录？是否存在多套互相冲突的目标？ |
 | 技术栈与依赖 | 实际栈是否唯一？包管理器是否混用？新增依赖是否有理由？禁用技术是否被引入？ |
 | 架构与边界 | 模块责任是否清楚？有没有跨层调用、循环依赖、重复框架、架构漂移？ |
+| 逻辑数据流 | 已有代码中的外部实体、加工、数据存储和数据流是否能被证据化？DFD 是否暴露跨产品、数据、API、后端的漂移？ |
 | 数据与迁移 | 业务对象、关系、生命周期、敏感字段、migration、回滚/前滚是否有真源？ |
 | API 与契约 | 请求/响应/错误码/鉴权/分页/DTO/mock/API client 是否一致？ |
 | 前端 | 路由、页面、组件、样式 token、状态、API client、错误处理是否收敛？ |
@@ -397,6 +399,26 @@ YYYYMMDD-HHMMSS-<mode-or-short-label>
 - 后端证据：入口、配置、日志、错误、鉴权、权限、健康检查。
 - 交付证据：任务计划、PR 边界、CI、测试、发布、回滚、监控、事故。
 
+### Step 2.5：条件生成 DFD 证据
+
+当诊断模式是 `Standard Rescue Audit` 或 `Deep Rescue Map`，且目标项目存在路由、控制器、服务、Repository、SQL、事件处理或页面组件时，必须调用或引用 [`reverse-dfd-analysis`](../reverse-dfd-analysis/SKILL.md)，把 DFD 作为横向证据层。
+
+最小输出：
+
+- `<project-root>/docs/rescue/runs/<run-id>/dfd/顶层图.md`
+- `<project-root>/docs/rescue/runs/<run-id>/dfd/证据表.md`
+
+当需要判断数据、API、前端、后端之间的冲突或漂移时，必须补充：
+
+- `<project-root>/docs/rescue/runs/<run-id>/dfd/0层图.md`
+
+执行约束：
+
+- 不得跳过 `reverse-dfd-analysis` 的目标层级门禁；缺少顶层图时不得直接生成 0 层图，缺少父加工时不得生成子图。
+- DFD 是逻辑数据流证据，不替代 01-10 阶段矩阵、风险登记、运行证据或最终补救结论。
+- 证据不足时，在 DFD 证据表和 rescue 证据账本中标注缺口，不得脑补数据流。
+- 若用户明确要求只聊天不落盘，仍要在聊天报告中标注 DFD 未落盘原因和本应写入的路径。
+
 ### Step 3：跑阶段感知安全止血门
 
 先判断项目阶段，再判断每个高危项的适用性，最后给出 `STOP` / `CONTAIN` / `CONTINUE`。若有 `STOP` 或 `CONTAIN`，报告必须把止血动作排在普通补救路线前。若风险属于 `未来门禁`，写入风险登记和补救路线，但不得伪装成当前阻塞。
@@ -439,6 +461,9 @@ YYYYMMDD-HHMMSS-<mode-or-short-label>
 - `conflict-drift-log.md`
 - `command-evidence-log.md`
 - `handoff-packet.md`
+- `dfd/顶层图.md`（条件生成）
+- `dfd/0层图.md`（需要判断数据/API/后端冲突时生成）
+- `dfd/证据表.md`（条件生成）
 
 可选写入：
 
@@ -516,6 +541,8 @@ YYYYMMDD-HHMMSS-<mode-or-short-label>
 4. 风险登记与适用性。
 5. 补救路线图。
 6. 证据账本与命令记录。
+
+当本轮生成或引用 DFD 时，主报告还必须在证据账本或冲突漂移章节中引用 `dfd/顶层图.md`、`dfd/0层图.md` 和 `dfd/证据表.md`，说明 DFD 支撑了哪些阶段判断，以及哪些结论仍缺少运行证据。
 
 ```md
 # Project Rescue Report
