@@ -317,6 +317,31 @@ AI 不得只输出：
 
 使用本 Skill 时，应优先参考所选框架和标准的官方文档。不要凭“听说某框架更专业/更安全”做选型。以下资料用于指导 Skill 的内置规则：
 
+涉及框架、库、CLI、版本行为、配置、路由、参数校验、错误处理、日志、健康检查、API 文档、测试或部署入口时，不得凭记忆写规则、命令或配置。应优先使用 Context7 查询当前官方文档，再创建、审计、修复或验收后端骨架。
+
+标准流程：
+
+```bash
+npx ctx7@latest library <官方库名> "<当前后端骨架问题>"
+npx ctx7@latest docs <library-id> "<当前后端骨架问题>"
+```
+
+适用对象包括但不限于 FastAPI、Django、Django REST Framework、NestJS、Express、Spring Boot、Laravel、Gin、Pydantic、OpenAPI 工具、配置/日志库和测试框架。框架原生能力仍然优先，但当能力、命令或配置随版本变化时，必须用当前官方资料支撑结论。
+
+如果 Context7 不可用、限额不足、查不到对应库或结果不足以支撑决策，可以降级到以下官方或一手来源，并记录降级原因：
+
+1. 官方文档站，包括 `/llms.txt` 或 `/llms-full.txt`。
+2. 官方 GitHub 仓库的 README、docs、examples、release notes。
+3. 厂商官方 MCP 文档源。
+4. Firecrawl / WebSearch 等抓取或搜索工具，但只采用官方或一手来源。
+
+查询时不得包含 API Key、Token、数据库连接串、私有内网地址、客户数据或任何带凭证的配置。当文档依据影响架构、命令、配置、安全基线或验收结论时，必须把依据摘要写入后端交付物，例如：
+
+- `docs/backend/backend-architecture-source-of-truth.md`
+- `docs/backend/runbook.md`
+- `docs/backend/security-baseline.md`
+- `docs/backend/acceptance-report.md`
+
 | 方向 | 官方/权威资料 | 本 Skill 采用的规则 |
 |---|---|---|
 | HTTP 状态码 | RFC 9110 HTTP Semantics | HTTP 状态码表达请求结果语义，业务错误码不得替代 HTTP 状态码 |
@@ -332,7 +357,7 @@ AI 不得只输出：
 | Laravel | Laravel 官方文档 | 使用 routes、controllers、Form Request validation、middleware、resources、errors、env/config |
 | Go Gin | Gin 官方文档与 Go 官方文档 | 使用 route groups、middleware、binding/validation、recovery、Go modules、cmd/internal 分层约束 |
 
-执行中如果需要查最新版本、命令、框架行为，必须优先查官方文档，并在回复中说明依据。
+执行中如果需要查最新版本、命令、框架行为，必须优先使用 Context7 查官方文档；若降级到其他官方或一手来源，必须说明原因和依据。
 
 ---
 

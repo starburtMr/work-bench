@@ -190,6 +190,35 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 - **状态**：服务端状态、客户端状态、表单状态、URL 状态必须分开判断。
 - **接口契约**：OpenAPI / 手写 API_CONTRACTS / Mock。
 
+#### 3.2.1 Context7 优先的官方文档依据规则
+
+涉及框架、组件库、CLI、版本行为、路由约定、样式系统、API Client、Mock、测试或质量工具时，不得凭记忆写规则、命令或配置。应优先使用 Context7 查询当前官方文档，再创建或优化前端骨架。
+
+标准流程：
+
+```bash
+npx ctx7@latest library <官方库名> "<当前前端骨架问题>"
+npx ctx7@latest docs <library-id> "<当前前端骨架问题>"
+```
+
+适用对象包括但不限于 React、Vite、Next.js、Vue、Nuxt、Angular、SvelteKit、Astro、Expo、Taro、uni-app、Tailwind CSS、shadcn/ui、Ant Design、MUI、Element Plus、Naive UI、TanStack Query、MSW、Vitest、Testing Library、Playwright、ESLint、Prettier。
+
+如果 Context7 不可用、限额不足、查不到对应库或结果不足以支撑决策，可以降级到以下官方或一手来源，并记录降级原因：
+
+1. 官方文档站，包括 `/llms.txt` 或 `/llms-full.txt`。
+2. 官方 GitHub 仓库的 README、docs、examples、release notes。
+3. 厂商官方 MCP 文档源。
+4. Firecrawl / WebSearch 等抓取或搜索工具，但只采用官方或一手来源。
+
+如果项目已经固定技术栈，Context7 用于验证当前官方脚手架、目录、配置和骨架约定，不得借机重开无关选型。查询时不得包含 API Key、Token、数据库连接串、私有内网地址、客户数据或任何带凭证的配置。
+
+当文档依据影响架构、命令、配置或质量门禁时，必须把依据摘要写入前端交付物，例如：
+
+- `docs/frontend/frontend-blueprint.md`
+- `docs/frontend/architecture-decision-record.md`
+- `docs/frontend/quality-gates.md`
+- `docs/frontend/ai-guardrails.md`
+
 #### 3.3 先骨架，后页面
 
 禁止一上来横推一堆页面。标准顺序是：
