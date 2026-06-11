@@ -1,0 +1,12 @@
+{
+  "name": "e2e-smoke-20260611170551",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "build": "node -e "console.log(\"build ok\")""
+  },
+  "dependencies": {
+    "react": "latest",
+    "typescript": "latest"
+  }
+}
