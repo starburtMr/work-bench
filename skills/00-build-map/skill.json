@@ -1,0 +1,17 @@
+{
+  "name": "build-map",
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "entrypoint": "SKILL.md",
+  "orchestrates": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "web-frame",
+    "server-frame",
+    "work-plan",
+    "doc-rules",
+    "final-check"
+  ]
+}

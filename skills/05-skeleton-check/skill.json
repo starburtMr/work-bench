@@ -1,0 +1,20 @@
+{
+  "name": "skeleton-check",
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "title": "骨架候选检查 Skill",
+  "source_skill": "new",
+  "workflow_stage": "05",
+  "upstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link"
+  ],
+  "downstream": [
+    "web-frame",
+    "server-frame",
+    "work-plan"
+  ],
+  "entrypoint": "SKILL.md"
+}

@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Tool Pick"
+  short_description: "Choose a maintainable stack and dependency policy"
+  default_prompt: "Use $tool-pick to choose a maintainable technology stack and dependency policy."

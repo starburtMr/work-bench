@@ -1,0 +1,21 @@
+{
+  "name": "server-frame",
+  "version": "4.0.0",
+  "language": "zh-CN",
+  "title": "后端工程骨架与架构验收 Skill",
+  "source_skill": "backend-architecture-skill-v2",
+  "workflow_stage": "07",
+  "upstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "skeleton-check"
+  ],
+  "downstream": [
+    "work-plan",
+    "doc-rules",
+    "final-check"
+  ],
+  "entrypoint": "SKILL.md"
+}

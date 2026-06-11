@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Talk Link"
+  short_description: "Define API contracts and integration rules"
+  default_prompt: "Use $talk-link to define the API contract and integration rules."

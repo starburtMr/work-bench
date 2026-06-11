@@ -1,0 +1,78 @@
+{
+  "name": "project-rescue-map",
+  "version": "2.1.0",
+  "language": "zh-CN",
+  "title": "已开工项目补救诊断 Skill",
+  "source_skill": "new",
+  "workflow_stage": "rescue",
+  "entrypoint": "SKILL.md",
+  "summary": "Evidence-driven rescue diagnosis for projects that skipped the work-bench 00-10 workflow. Produces a risk-ranked stage rescue roadmap before repair work.",
+  "default_mode": "Standard Rescue Audit",
+  "upstream": [],
+  "downstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "skeleton-check",
+    "web-frame",
+    "server-frame",
+    "work-plan",
+    "doc-rules",
+    "final-check"
+  ],
+  "outputs": [
+    "docs/rescue/index.md",
+    "docs/rescue/runs/<run-id>/project-rescue-report.md",
+    "docs/rescue/runs/<run-id>/rescue-stateboard.md",
+    "docs/rescue/runs/<run-id>/evidence-ledger.md",
+    "docs/rescue/runs/<run-id>/risk-register.md",
+    "docs/rescue/runs/<run-id>/conflict-drift-log.md",
+    "docs/rescue/runs/<run-id>/command-evidence-log.md",
+    "docs/rescue/runs/<run-id>/handoff-packet.md"
+  ],
+  "evidence_levels": [
+    "E0",
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5"
+  ],
+  "risk_levels": [
+    "阻塞",
+    "必须补",
+    "可后补",
+    "观察项"
+  ],
+  "decision_states": [
+    "STOP",
+    "CONTAIN",
+    "CONTINUE"
+  ],
+  "project_stages": [
+    "prototype",
+    "mvp-dev",
+    "staging",
+    "production",
+    "handoff",
+    "unknown"
+  ],
+  "applicability_states": [
+    "适用",
+    "暂不适用",
+    "未来门禁",
+    "不可验证"
+  ],
+  "tags": [
+    "project rescue",
+    "diagnosis",
+    "evidence ledger",
+    "risk matrix",
+    "stage gap analysis",
+    "legacy project",
+    "AI generated project cleanup"
+  ],
+  "created_from": "project-rescue-map v1",
+  "updated_at": "2026-06-10"
+}

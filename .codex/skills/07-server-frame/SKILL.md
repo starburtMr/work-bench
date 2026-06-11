@@ -100,6 +100,10 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 本 skill 在 backend delivery target 中工作，默认是 `<project-root>/backend`。它可以与前端骨架并行，但二者必须共同引用 `talk-link` 的接口真源。若后端发现数据模型不支持接口，应回到数据库 skill 修订。
 
+如果本次复用骨架，必须使用 `skeleton-check` 输出的候选 `source` 和 `path`。候选来源可以是用户全局骨架库 `<codex-home>/work-bench/backend/apps`，也可以是插件内置骨架库 `backend/apps`；同名候选以 `user-global` 为准。
+
+如果本次创建可复用后端骨架，必须注册到 `<codex-home>/work-bench/backend/apps/<skeleton-name>/` 并更新用户 registry。不要把新骨架写入插件安装缓存目录；只有维护插件内置资产时才修改 `backend/apps`。
+
 ## 9. 推荐落盘位置
 
 - 阶段真源文档：`<project-root>/docs/`
@@ -117,7 +121,7 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 本 Skill 用于 Vibe Coding 场景下的后端工程控制。它不把后端当成“写几个接口”，而是把后端视为产品背后的**业务裁判层**：后端负责判断用户是谁、能不能做、该怎么做、数据如何变化、失败如何返回、日志如何追踪、密钥如何隔离、权限谁说了算。
 
-如果 `skeleton-check` 选择 `create`，先把新候选骨架放进 `backend/apps` 并更新 `backend/README.md` 索引，再把它复制/落地到 backend delivery target。
+如果 `skeleton-check` 选择 `create`，先把新候选骨架注册进 `<codex-home>/work-bench/backend/apps` 并更新用户 registry，再把它复制/落地到 backend delivery target。只有维护插件内置资产时才修改 `backend/apps` 和 `backend/README.md`。
 
 本 Skill 有两个工作模式：
 

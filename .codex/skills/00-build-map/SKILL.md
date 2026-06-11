@@ -130,9 +130,10 @@ description: "Orchestrate the full development workflow from idea to release. Us
 进入前端或后端骨架实施前必须满足：
 
 - [ ] frontend/backend 的 delivery target 已在 `idea-check` 中确认并写入 `<project-root>/docs/product/bootstrap-targets.md`。
-- [ ] `frontend/README.md`、`backend/README.md` 已作为候选骨架索引读取。
-- [ ] `frontend/apps` 和 `backend/apps` 的候选骨架已扫描。
+- [ ] `frontend/README.md`、`backend/README.md` 已作为插件内置候选骨架索引读取。
+- [ ] 用户全局骨架库和插件内置骨架库都已扫描；用户全局库不存在时按空库处理。
 - [ ] 每侧都给出 `reuse` 或 `create` 结论。
+- [ ] 选中的候选骨架已标注 `source` 和 `path`，其中 `source` 只能是 `user-global` 或 `plugin-builtin`。
 - [ ] 候选库路径和 delivery target 路径已区分清楚；默认不得把 `apps` 目录复制进目标项目。
 
 ### G6：前端骨架门禁

@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Final Check"
+  short_description: "Verify release readiness with evidence"
+  default_prompt: "Use $final-check to verify release readiness with evidence and quality gates."

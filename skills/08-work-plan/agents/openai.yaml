@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Work Plan"
+  short_description: "Split an MVP into slices, tasks, and PRs"
+  default_prompt: "Use $work-plan to split this MVP into vertical slices, tickets, and PRs."

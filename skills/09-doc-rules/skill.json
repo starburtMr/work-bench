@@ -1,0 +1,22 @@
+{
+  "name": "doc-rules",
+  "version": "4.0.0",
+  "language": "zh-CN",
+  "title": "仓库文档与 Agent 协作规范同步 Skill",
+  "source_skill": "sync-skeleton-docs",
+  "workflow_stage": "09",
+  "upstream": [
+    "idea-check",
+    "tool-pick",
+    "data-map",
+    "talk-link",
+    "skeleton-check",
+    "web-frame",
+    "server-frame",
+    "work-plan"
+  ],
+  "downstream": [
+    "final-check"
+  ],
+  "entrypoint": "SKILL.md"
+}

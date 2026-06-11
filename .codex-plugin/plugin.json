@@ -1,0 +1,32 @@
+{
+  "name": "work-bench",
+  "version": "0.1.0",
+  "description": "Codex workflow skills and reusable frontend/backend skeleton library.",
+  "author": {
+    "name": "work-bench maintainers"
+  },
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "skills",
+    "skeletons",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "work-bench",
+    "shortDescription": "Workflow skills and skeletons for Codex projects.",
+    "longDescription": "A global Codex workbench with project workflow skills plus reusable frontend and backend skeleton libraries.",
+    "developerName": "work-bench maintainers",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use work-bench to start a new project workflow.",
+      "Use skeleton-check to choose frontend/backend skeletons.",
+      "Use project-rescue-map to diagnose an existing project."
+    ]
+  }
+}

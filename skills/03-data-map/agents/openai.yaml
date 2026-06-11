@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Data Map"
+  short_description: "Design relational schemas from business flows"
+  default_prompt: "Use $data-map to design the relational database schema from the business flow."

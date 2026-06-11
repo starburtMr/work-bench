@@ -16,6 +16,7 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 ## 2. 何时启用
 
 - 新增或更新前端/后端骨架后，需要补 README、docs、AGENTS.md 或 CI。
+- 新增可复用骨架并注册到用户全局 work-bench 骨架库后，需要补 README、registry 元数据和来源说明。
 - 完成产品/技术/数据库/API/骨架阶段后，需要把规则固化到仓库。
 - 已有仓库文档与实际项目不一致，需要同步。
 
@@ -26,6 +27,7 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 - `<project-root>/docs/*` 下所有阶段真源文档。
 - 目标项目根目录现有 README、docs、AGENTS.md、package.json、pyproject.toml、Makefile、CI 配置、部署配置。
 - 前端/后端实际命令和测试工具。
+- `<project-root>/docs/skeleton/*` 中记录的候选 `source` 和 `path`。
 
 ## 4. 下游输出契约
 
@@ -71,6 +73,7 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 3. AGENTS.md 必须引用当前项目真源文档，而不是泛泛而谈。
 4. CI 必须与实际语言、框架、测试工具和数据库依赖匹配。
 5. 文档要短、可扫读、可导航，不能生成没人维护的长篇废话。
+6. 骨架文档必须区分 delivery target、用户全局骨架库和插件内置骨架库。
 
 ## 7. 阶段完成门禁
 
@@ -79,6 +82,7 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 - [ ] 所有文档链接存在且路径正确。
 - [ ] CI workflow 的每一步命令在项目中能找到来源。
 - [ ] 不存在跨项目引用、过期栈名、虚假命令或 stale 文档。
+- [ ] 骨架选择文档保留 `source` 和 `path`，并说明用户全局骨架优先级。
 
 ## 8. 工作模式补充
 
@@ -111,6 +115,7 @@ Use this skill when a new frontend or backend skeleton has been placed in the wo
 6. Add or update `.github/workflows/*` so CI matches the real stack: install, lint, typecheck, tests, build, and optional e2e or database checks when they exist.
 7. Update any repo-level index page if the workspace uses one for front-end or back-end navigation.
 8. Remove cross-project references, stale stack names, and commands that do not exist in the current skeleton.
+9. When documenting a reusable skeleton, state whether it is user-global or plugin-builtin and avoid instructing users to edit plugin cache directories.
 
 ### What To Keep In Sync
 

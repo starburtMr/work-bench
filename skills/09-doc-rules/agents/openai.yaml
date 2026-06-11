@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Doc Rules"
+  short_description: "Sync docs, AGENTS, and CI with the codebase"
+  default_prompt: "Use $doc-rules to sync the docs, AGENTS.md, and CI with the codebase."

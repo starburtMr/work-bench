@@ -90,6 +90,10 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 
 本 skill 在 frontend delivery target 中工作，默认是 `<project-root>/frontend`。它不直接绕过 API 契约写死数据结构。若接口或页面数据不清，回到 `talk-link` 或 `idea-check`。
 
+如果本次复用骨架，必须使用 `skeleton-check` 输出的候选 `source` 和 `path`。候选来源可以是用户全局骨架库 `<codex-home>/work-bench/frontend/apps`，也可以是插件内置骨架库 `frontend/apps`；同名候选以 `user-global` 为准。
+
+如果本次创建可复用前端骨架，必须注册到 `<codex-home>/work-bench/frontend/apps/<skeleton-name>/` 并更新用户 registry。不要把新骨架写入插件安装缓存目录；只有维护插件内置资产时才修改 `frontend/apps`。
+
 ## 9. 推荐落盘位置
 
 - 阶段真源文档：`<project-root>/docs/`
@@ -113,7 +117,7 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 - 明确组件治理：成熟组件库优先，重复 UI 必须抽象，组件边界清晰。
 - 明确目录边界：页面、模块、组件、接口、样式、工具、类型、测试各归其位。
 - 明确接口契约：统一 API Client、统一错误结构、Mock 策略、OpenAPI 草案。
-- 如果 `skeleton-check` 选择 `create`，先把新候选骨架放进 `frontend/apps` 并更新 `frontend/README.md` 索引，再把它复制/落地到 frontend delivery target。
+- 如果 `skeleton-check` 选择 `create`，先把新候选骨架注册进 `<codex-home>/work-bench/frontend/apps` 并更新用户 registry，再把它复制/落地到 frontend delivery target。只有维护插件内置资产时才修改 `frontend/apps` 和 `frontend/README.md`。
 - 明确 AI 约束：后续 Vibe Coding 不能擅自换栈、乱建目录、绕过 Token、复制组件、散落接口。
 
 一句话：**先定规则，再让 AI 进场；把 AI 从“自由艺术家”变成“守规工程师”。**
