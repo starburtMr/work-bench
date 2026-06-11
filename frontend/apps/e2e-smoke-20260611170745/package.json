@@ -1,0 +1,12 @@
+{
+  "name": "e2e-smoke-20260611170745",
+  "private": true,
+  "scripts": {
+    "test": "node --version",
+    "build": "node --version"
+  },
+  "dependencies": {
+    "react": "latest",
+    "typescript": "latest"
+  }
+}

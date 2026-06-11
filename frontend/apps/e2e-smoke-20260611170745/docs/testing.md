@@ -1,0 +1,3 @@
+# Testing
+
+Smoke test documentation.
