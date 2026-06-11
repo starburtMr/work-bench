@@ -74,6 +74,7 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 4. CI 必须与实际语言、框架、测试工具和数据库依赖匹配。
 5. 文档要短、可扫读、可导航，不能生成没人维护的长篇废话。
 6. 骨架文档必须区分 delivery target、用户全局骨架库和插件内置骨架库。
+7. 文档中涉及把完整骨架提交回 work-bench 仓库时，必须说明使用 `scripts/work_bench_skeletons.py change-pr` 向 `skeleton-inbox` 创建 PR，而不是直接修改插件缓存或发布分支。
 
 ## 7. 阶段完成门禁
 
@@ -83,6 +84,7 @@ description: "Synchronize README, docs indexes, AGENTS.md, agent rules, and CI w
 - [ ] CI workflow 的每一步命令在项目中能找到来源。
 - [ ] 不存在跨项目引用、过期栈名、虚假命令或 stale 文档。
 - [ ] 骨架选择文档保留 `source` 和 `path`，并说明用户全局骨架优先级。
+- [ ] 内置骨架变更文档已说明 `change-pr`、`skeleton-inbox`、贡献 clone 和 PR 审核路径。
 
 ## 8. 工作模式补充
 
@@ -116,6 +118,7 @@ Use this skill when a new frontend or backend skeleton has been placed in the wo
 7. Update any repo-level index page if the workspace uses one for front-end or back-end navigation.
 8. Remove cross-project references, stale stack names, and commands that do not exist in the current skeleton.
 9. When documenting a reusable skeleton, state whether it is user-global or plugin-builtin and avoid instructing users to edit plugin cache directories.
+10. When a complete skeleton should become plugin-builtin, document the `change-pr` workflow to `skeleton-inbox` for add/update/docs/remove/rename instead of direct pushes.
 
 ### What To Keep In Sync
 

@@ -44,3 +44,14 @@ Default delivery paths remain:
 - Backend: `<project-root>/backend`
 
 Copy operations must refuse to overwrite a non-empty target unless overwrite behavior is explicitly requested.
+
+## Promoting User-Global Skeletons
+
+When a user-global skeleton becomes useful enough to ship with the plugin, promote it through a reviewed PR rather than editing plugin cache files. The promotion path is:
+
+1. Finish the skeleton in `<codex-home>/work-bench/frontend/apps/<name>` or `<codex-home>/work-bench/backend/apps/<name>`.
+2. Ensure it has a `README.md`; add `AGENTS.md` and `docs/` when the skeleton needs reusable agent or architecture rules.
+3. Run `scripts/work_bench_skeletons.py change-pr` with the matching `--type`, `--kind`, `--name`, and `--source`.
+4. Review the generated PR against `skeleton-inbox`.
+
+The `change-pr` command updates the plugin-builtin app directory and `frontend/README.md` or `backend/README.md` index inside a dedicated contribution clone at `<codex-home>/work-bench/repo`. It blocks likely secrets, generated artifacts, dirty contribution workspaces, empty diffs, and invalid add/update/docs/remove/rename states before creating the PR.

@@ -75,6 +75,7 @@ description: "Inspect existing frontend/apps and backend/apps skeleton candidate
 7. 不能把 delivery target 和 candidate library 混在一起；默认不得把 `apps` 目录复制进目标项目。
 8. 每个候选必须输出 `source` 和 `path`。
 9. 不得伪造“已有可复用骨架”的结论。
+10. 当完整的用户全局骨架需要沉淀为插件内置骨架时，必须使用 `scripts/work_bench_skeletons.py change-pr` 创建到 `skeleton-inbox` 的 PR；不得直接修改插件缓存目录或推送发布分支。
 
 ## 7. 阶段完成门禁
 
@@ -86,4 +87,5 @@ description: "Inspect existing frontend/apps and backend/apps skeleton candidate
 - [ ] 选择报告包含候选 `source` 和 `path`。
 - [ ] delivery target 已和 `<project-root>/docs/product/bootstrap-targets.md` 对齐。
 - [ ] 若选择 `create`，用户 registry 已纳入更新范围；只有维护插件内置资产时才更新 `frontend/README.md` 或 `backend/README.md`。
+- [ ] 若本次要把新增/修改/删除/重命名的骨架提交回 work-bench 仓库，已改用 `change-pr` 生成到 `skeleton-inbox` 的 PR。
 - [ ] 选择报告可被 `web-frame` / `server-frame` 直接消费。

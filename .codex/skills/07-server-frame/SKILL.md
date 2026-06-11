@@ -104,6 +104,8 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 如果本次创建可复用后端骨架，必须注册到 `<codex-home>/work-bench/backend/apps/<skeleton-name>/` 并更新用户 registry。不要把新骨架写入插件安装缓存目录；只有维护插件内置资产时才修改 `backend/apps`。
 
+如果这个新增、更新、文档调整、删除或重命名后的后端骨架已经完整，并且要合入 work-bench 仓库作为插件内置骨架，必须运行 `scripts/work_bench_skeletons.py change-pr --kind backend ...` 创建到 `skeleton-inbox` 的 PR。`change-pr` 会在贡献 clone 中更新 `backend/apps` 与 `backend/README.md`，生成中文 PR 说明并执行安全检查；不要直接推插件发布分支。
+
 ## 9. 推荐落盘位置
 
 - 阶段真源文档：`<project-root>/docs/`
@@ -123,12 +125,14 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 如果 `skeleton-check` 选择 `create`，先把新候选骨架注册进 `<codex-home>/work-bench/backend/apps` 并更新用户 registry，再把它复制/落地到 backend delivery target。只有维护插件内置资产时才修改 `backend/apps` 和 `backend/README.md`。
 
+如果要把该后端骨架作为插件内置资产发布，使用 `scripts/work_bench_skeletons.py change-pr` 向 `skeleton-inbox` 发起 PR，覆盖 add/update/docs/remove/rename，不直接修改插件缓存或发布分支。
+
 本 Skill 有两个工作模式：
 
-1. **模式 A：0→1 后端可运行骨架搭建**  
+1. **模式 A：0→1 后端可运行骨架搭建**
    从零建立一个可启动、可验证、可持续迭代的后端最小工程基线。该模式不直接开发登录、支付、订单等业务功能。
 
-2. **模式 B：现有后端代码梳理、审计、修复**  
+2. **模式 B：现有后端代码梳理、审计、修复**
    对已有后端代码进行现状盘点、架构审计、目录责任重建、工程基线补齐、接口规范收敛、安全检查、运行验收和文档固化。
 
 本 Skill 的核心产出不是“看起来能跑的代码”，而是：

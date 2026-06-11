@@ -46,6 +46,20 @@ codex plugin list
 
 用户新增或定制的可复用骨架默认放到 `<codex-home>/work-bench/`，其中 `<codex-home>` 是 `CODEX_HOME` 或 `~/.codex`。插件内置骨架仍随仓库的 `frontend/apps` 和 `backend/apps` 分发。
 
+### 提交内置骨架变更
+
+个人项目里沉淀的新骨架先注册到用户全局骨架库；当这个骨架已经完整、希望合入 work-bench 仓库供别人使用时，使用 `change-pr` 创建 PR，不直接改插件缓存或推发布分支。
+
+```bash
+python3 scripts/work_bench_skeletons.py change-pr \
+  --type add \
+  --kind frontend \
+  --name react-dashboard \
+  --source ~/.codex/work-bench/frontend/apps/react-dashboard
+```
+
+`change-pr` 支持 `add`、`update`、`docs`、`remove`、`rename`，默认把 PR 发到 `skeleton-inbox` 分支。该命令会使用 `<codex-home>/work-bench/repo` 作为贡献 clone，检查敏感内容和构建产物，生成中文 PR 标题/说明，并更新 `frontend/README.md` 或 `backend/README.md` 的内置骨架索引。机器调用可加 `--json`，本地演练可加 `--dry-run`。
+
 ## 推荐入口
 
 | 场景 | 入口 | 用途 |

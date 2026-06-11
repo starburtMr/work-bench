@@ -94,6 +94,8 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 
 如果本次创建可复用前端骨架，必须注册到 `<codex-home>/work-bench/frontend/apps/<skeleton-name>/` 并更新用户 registry。不要把新骨架写入插件安装缓存目录；只有维护插件内置资产时才修改 `frontend/apps`。
 
+如果这个新增、更新、文档调整、删除或重命名后的前端骨架已经完整，并且要合入 work-bench 仓库作为插件内置骨架，必须运行 `scripts/work_bench_skeletons.py change-pr --kind frontend ...` 创建到 `skeleton-inbox` 的 PR。`change-pr` 会在贡献 clone 中更新 `frontend/apps` 与 `frontend/README.md`，生成中文 PR 说明并执行安全检查；不要直接推插件发布分支。
+
 ## 9. 推荐落盘位置
 
 - 阶段真源文档：`<project-root>/docs/`
@@ -118,6 +120,7 @@ description: "Create or normalize a maintainable frontend skeleton with routing,
 - 明确目录边界：页面、模块、组件、接口、样式、工具、类型、测试各归其位。
 - 明确接口契约：统一 API Client、统一错误结构、Mock 策略、OpenAPI 草案。
 - 如果 `skeleton-check` 选择 `create`，先把新候选骨架注册进 `<codex-home>/work-bench/frontend/apps` 并更新用户 registry，再把它复制/落地到 frontend delivery target。只有维护插件内置资产时才修改 `frontend/apps` 和 `frontend/README.md`。
+- 如果要把该前端骨架作为插件内置资产发布，使用 `scripts/work_bench_skeletons.py change-pr` 向 `skeleton-inbox` 发起 PR，覆盖 add/update/docs/remove/rename，不直接修改插件缓存或发布分支。
 - 明确 AI 约束：后续 Vibe Coding 不能擅自换栈、乱建目录、绕过 Token、复制组件、散落接口。
 
 一句话：**先定规则，再让 AI 进场；把 AI 从“自由艺术家”变成“守规工程师”。**
@@ -316,7 +319,7 @@ src/
 React + TypeScript + Vite + React Router + Ant Design + TanStack Query + CSS Variables Tokens + Vitest + Playwright
 ```
 
-适用：后台、CRM、ERP、运营系统、订单管理、数据密集型表格。  
+适用：后台、CRM、ERP、运营系统、订单管理、数据密集型表格。
 理由：组件覆盖完整，表单、表格、弹窗、菜单成熟，适合高信息密度后台。
 
 备选：

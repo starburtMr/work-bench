@@ -104,6 +104,8 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 
 如果本次创建可复用后端骨架，必须注册到 `<codex-home>/work-bench/backend/apps/<skeleton-name>/` 并更新用户 registry。不要把新骨架写入插件安装缓存目录；只有维护插件内置资产时才修改 `backend/apps`。
 
+如果这个新增、更新、文档调整、删除或重命名后的后端骨架已经完整，并且要合入 work-bench 仓库作为插件内置骨架，必须运行 `scripts/work_bench_skeletons.py change-pr --kind backend ...` 创建到 `skeleton-inbox` 的 PR。`change-pr` 会在贡献 clone 中更新 `backend/apps` 与 `backend/README.md`，生成中文 PR 说明并执行安全检查；不要直接推插件发布分支。
+
 ## 9. 推荐落盘位置
 
 - 阶段真源文档：`<project-root>/docs/`
@@ -122,6 +124,8 @@ description: "Build, audit, repair, and validate a backend skeleton with route r
 本 Skill 用于 Vibe Coding 场景下的后端工程控制。它不把后端当成“写几个接口”，而是把后端视为产品背后的**业务裁判层**：后端负责判断用户是谁、能不能做、该怎么做、数据如何变化、失败如何返回、日志如何追踪、密钥如何隔离、权限谁说了算。
 
 如果 `skeleton-check` 选择 `create`，先把新候选骨架注册进 `<codex-home>/work-bench/backend/apps` 并更新用户 registry，再把它复制/落地到 backend delivery target。只有维护插件内置资产时才修改 `backend/apps` 和 `backend/README.md`。
+
+如果要把该后端骨架作为插件内置资产发布，使用 `scripts/work_bench_skeletons.py change-pr` 向 `skeleton-inbox` 发起 PR，覆盖 add/update/docs/remove/rename，不直接修改插件缓存或发布分支。
 
 本 Skill 有两个工作模式：
 
