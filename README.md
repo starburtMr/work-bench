@@ -12,6 +12,34 @@ work-bench 是给 Codex 这类编程助手使用的全局插件、Skill 和骨�
 
 ## 插件使用
 
+### 通过 Codex CLI 安装
+
+当前公开仓库地址是：
+
+```text
+https://github.com/starburtMr/work-bench
+```
+
+先把这个仓库作为 Codex 插件 marketplace 加入本机：
+
+```bash
+codex plugin marketplace add starburtMr/work-bench --ref codex/initialize-workbench
+```
+
+然后从该 marketplace 安装插件：
+
+```bash
+codex plugin add work-bench@work-bench
+```
+
+安装后开启一个新的 Codex 会话，让插件里的 skills 重新加载。可用下面命令确认插件已安装：
+
+```bash
+codex plugin list
+```
+
+说明：当前 Codex CLI 的安装子命令是 `codex plugin add`。如果你使用的 Codex 版本把同等能力命名为 `codex plugin install`，则使用 `codex plugin install work-bench@work-bench`。
+
 - 插件说明：[docs/plugin-usage.md](docs/plugin-usage.md)
 - 骨架库规则：[docs/skeleton-library.md](docs/skeleton-library.md)
 - 新骨架沉淀规范：[docs/skeleton-contribution.md](docs/skeleton-contribution.md)

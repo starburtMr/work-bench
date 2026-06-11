@@ -1,0 +1,20 @@
+{
+  "name": "work-bench",
+  "interface": {
+    "displayName": "work-bench"
+  },
+  "plugins": [
+    {
+      "name": "work-bench",
+      "source": {
+        "source": "local",
+        "path": "./plugins/work-bench"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
